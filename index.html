@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Messy ToDo</title>
+    <!-- CSS Link -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <div class="todo">
+        <!-- Title -->
+        <h1>Todo List</h1>
+        <!-- Form -->
+        <form id="taskForm" onsubmit="return false;">
+            <input id="taskInput" type="text" placeholder="Enter a task...">
+            <input type="submit" value="Add Task" onclick="addTask()">
+        </form>
+    </div>
+    <!-- Task Table -->
+    <table>
+        <!-- Task Thead -->
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Task Name</th>
+                <th>Toggle</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+        <!-- Task Tbody -->
+        <tbody id="taskList">
+            <!-- Task items will be dynamically added here -->
+        </tbody>
+    </table>
+
+
+
+    <!-- JS Script -->
+    <script src="js/script.js"></script>
+</body>
+
+</html>

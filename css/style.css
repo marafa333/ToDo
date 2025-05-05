@@ -1,0 +1,113 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: cursive;
+    font-size: 20px;
+}
+
+/* Body */
+body {
+    background: url('../uploads/736461.png') no-repeat center center fixed;
+    background-size: cover;
+}
+
+/* Todo */
+.todo {
+    text-align: center;
+}
+
+/* Titel */
+h1 {
+    text-align: center;
+    margin: 20px 0;
+    font-size: 50px;
+    color: orange;
+    text-shadow: 2px 2px 5px black;
+    text-decoration: underline darkcyan solid 3px;
+}
+
+/* End Titel */
+/* Form */
+input[type="text"] {
+    width: 300px;
+    height: 40px;
+    border-radius: 5px;
+    border: 2px solid darkcyan;
+    padding: 5px;
+    font-size: 18px;
+    margin-right: 10px;
+}
+
+input[type="text"]:focus {
+    outline: none;
+    border-color: darkcyan;
+    box-shadow: 0 0 5px darkcyan;
+}
+
+input[type="submit"] {
+    width: 100px;
+    height: 40px;
+    border-radius: 5px;
+    border: 2px solid darkcyan;
+    background-color: darkcyan;
+    color: white;
+    font-size: 18px;
+    cursor: pointer;
+    transition: background-color 1s ease, color 1s ease;
+}
+
+input[type="submit"]:hover {
+    background-color: white;
+    color: darkcyan;
+}
+
+/* End Form */
+/* Table */
+table {
+    width: 95%;
+    margin: 20px auto;
+    border: 2px solid darkcyan;
+    border-radius: 5px;
+}
+
+th,
+td {
+    padding: 10px;
+    text-align: center;
+    border-bottom: 1px solid darkcyan;
+    color: orange;
+}
+
+th {
+    background-color: darkcyan;
+    color: white;
+}
+
+tr:nth-child(odd) {
+    background-color: #f2f2f2;
+    color: orange;
+}
+
+tr:nth-child(even) {
+    background-color: darkcyan;
+    color: white;
+}
+
+table button {
+    width: 80px;
+    height: 35px;
+    border-radius: 5px;
+    border: 2px solid orange;
+    background-color: darkcyan;
+    color: orange;
+    font-size: 18px;
+    cursor: pointer;
+    transition: background-color 1s ease, color 1s ease;
+}
+
+table button:hover {
+    background-color: white;
+}
+
+/* End Table */
