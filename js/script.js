@@ -1,90 +1,70 @@
-var data = [];
-var counter = 1;
-// Add Task
-function addTask() {
-    var a = document.getElementById("taskInput");
-    var task = a.value.trim();
-    if (task === "") {
+
+let tasks = [];
+let current = 1;
+
+// DOM Elements
+const taskInput = document.getElementById("taskInput");
+const taskList = document.getElementById("taskList");
+const taskForm = document.getElementById("taskForm");
+
+// Add new task
+const addTask = () => {
+    const taskName = taskInput.value.trim();
+    if (!taskName) {
         alert("Please enter a task.");
         return;
     }
-    data[counter] = {
-        id: counter,
-        name: task,
+
+    const task = {
+        id: current++, 
+        name: taskName,
         done: false
     };
-    counter++;
-    a.value = "";
+
+    tasks.push(task);
+    taskInput.value = "";
     renderTasks();
-}
+};
 
-// Add Task in Tbody
-function renderTasks() {
-    var tbody = document.getElementById("taskList");
-    tbody.innerHTML = "";
+// Render all tasks in the Tbody
+const renderTasks = () => {
+    taskList.innerHTML = "";
 
-    for (let i = 0; i < data.length; i++) {
-        if (typeof data[i] !== "undefined") {
-            let row = document.createElement("tr");
+    tasks.forEach((task, index) => {
+        const row = document.createElement("tr");
 
-            // ID Cell
-            let tdId = document.createElement("td");
-            tdId.textContent = data[i].id;
-            row.appendChild(tdId);
+        row.innerHTML = `
+            <td>${task.id}</td>
+            <td style="text-decoration: ${task.done ? 'line-through solid 3px' : 'none'}">${task.name}</td>
+            <td><button onclick="toggleTask(${index})">Toggle</button></td>
+            <td><button onclick="deleteTask(${index})">Delete</button></td>
+        `;
 
-            // Task Name Cell
-            let tdName = document.createElement("td");
-            tdName.textContent = data[i].name;
-            if (data[i].done) {
-                tdName.style.textDecoration = "line-through solid 3px";
-            }
-            row.appendChild(tdName);
+        taskList.appendChild(row);
+    });
+};
 
-            // Toggle Button Cell
-            let tdToggle = document.createElement("td");
-            let toggleBtn = document.createElement("button");
-            toggleBtn.textContent = "Toggle";
-            toggleBtn.onclick = function () {
-                toggle(i);
-            };
-            tdToggle.appendChild(toggleBtn);
-            row.appendChild(tdToggle);
-
-            // Delete Button Cell
-            let tdDelete = document.createElement("td");
-            let deleteBtn = document.createElement("button");
-            deleteBtn.textContent = "Delete";
-            deleteBtn.onclick = function () {
-                deleteTask(i);
-            };
-            tdDelete.appendChild(deleteBtn);
-            row.appendChild(tdDelete);
-
-            tbody.appendChild(row);
-        }
-    }
-}
-
-// Toggle Task
-function toggle(index) {
-    if (data[index]) {
-        data[index].done = !data[index].done;
-        renderTasks();
-    }
-}
-
-// Delete Task
-function deleteTask(index) {
-    data.splice(index, 1);
+// Toggle task
+const toggleTask = (index) => {
+    tasks[index].done = !tasks[index].done;
     renderTasks();
-}
+};
 
-// All Tasks Done Check
+// Delete task
+const deleteTask = (index) => {
+    tasks.splice(index, 1);
+    renderTasks();
+};
+
+// Auto-check if all tasks are done every 10 seconds
 setInterval(() => {
-    if (data.length === 0) return;
-
-    const allDone = data.every(task => task && task.done);
-    if (allDone) {
+    if (tasks.length && tasks.every(task => task.done)) {
         console.log("All tasks done!");
     }
 }, 10000);
+
+// Bind form submit
+taskForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+    addTask();
+});
